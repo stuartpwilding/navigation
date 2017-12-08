@@ -1,0 +1,703 @@
+// header
+
+.hdr-global {
+  background: $color-white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  @include mq($bp960) {
+    position: absolute;
+  }
+
+  .sticky-nav-stick & {
+    position: fixed;
+  }
+
+  .nav-utility {
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+
+  .pane {
+    background: $color-white;
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+
+    &:not(.is-active) {
+      display: none;
+    }
+
+    > ul {
+      position: absolute;
+      top: 61px;
+      height: calc(100% - 61px);
+      width: 100%;
+      background: $color-white;
+      @include overflow-scroll;
+
+      @include mq($bp580) {
+        top: 71px;
+        height: calc(100% - 71px);
+      }
+
+      li {
+        border-bottom: 1px solid $color-light-grey;
+
+        li:last-child {
+          border: 0;
+        }
+
+        > div {
+          background: $color-white-smoke;
+          @include font-size(14);
+          height: rem(40);
+          @include padding(null 20px);
+          @include vertical-align-flex;
+          border-bottom: 1px solid $color-light-grey;
+
+          @include mq($bp580) {
+            @include font-size(18);
+            height: rem(50);
+          }
+        }
+      }
+
+      a {
+        display: block;
+        height: rem(60);
+        @include padding(null 20px);
+        @include vertical-align-flex;
+        @include font-size(18, 24);
+        font-family: sans-serif;
+        font-weight: bold;
+
+        @include mq($bp580) {
+          height: rem(70);
+          @include font-size(22, 24);
+        }
+      }
+    }
+  }
+
+  .pane-top-level {
+    display: flex;
+    border-bottom: 1px solid $color-light-grey;
+
+    a {
+      flex: 1;
+      @include font-size(24, 24);
+      @include vertical-align-flex;
+      @include padding(null 14px);
+      border-left: 1px solid $color-light-grey;
+      color: inherit;
+
+      @include mq($bp580) {
+        @include font-size(30);
+        @include padding(null 26px);
+      }
+    }
+
+    button {
+      @include hide-text;
+      width: 60px;
+      height: 60px;
+      position: relative;
+
+      @include mq($bp580) {
+        height: 70px;
+        width: 70px;
+      }
+
+      &::before {
+        content: '';
+        @include chevron(13px, 2px, $color-lochmara, left);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include margin(-6px null null -3px);
+      }
+    }
+  }
+}
+
+
+.hdr-global-top {
+  @include max-width-container;
+  display: flex;
+  height: 61px;
+
+  @include mq($bp960max) {
+    border-bottom: 1px solid $color-light-grey;
+
+    .search-open & {
+      border-bottom-color: $color-dark-tan;
+    }
+  }
+
+  @include mq($bp580) {
+    height: 71px;
+  }
+
+  @include mq($bp960) {
+    height: 124px;
+    border: 0;
+    position: relative;
+  }
+
+  .logo {
+    flex: 1;
+    @include padding(17px null null 21px);
+
+    @include mq($bp960) {
+      @include padding(30px null null 30px);
+    }
+
+    a {
+      display: block;
+      width: 137px;
+      height: 26px;
+
+      @include mq($bp960max) {
+        background: url('../svg/logo-smu.svg') 50% 50%/contain no-repeat;
+      }
+
+      @include mq($bp580) {
+        width: 188px;
+        height: 36px;
+      }
+
+      @include mq($bp960) {
+        width: 380px;
+        height: 64px;
+      }
+    }
+
+    svg {
+      display: none;
+
+      @include mq($bp960) {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  .nav-utility {
+    width: 510px;
+    @include margin(53px 12px null null);
+
+    @include mq($bp1280) {
+      width: 624px;
+      @include margin(null 30px null null);
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+
+    }
+
+    li {
+      @include font-size(13);
+    }
+
+    a {
+      color: inherit;
+
+      @include hover {
+        color: $color-lochmara;
+      }
+    }
+  }
+}
+
+
+.btn-nav-main {
+  @include hide-text;
+  height: 60px;
+  width: 60px;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 22px;
+    @include centered;
+    background: linear-gradient($color-lochmara, $color-lochmara 2px, transparent 2px, transparent 10px, $color-lochmara 10px, $color-lochmara 12px, transparent 12px, transparent 20px, $color-lochmara 20px, $color-lochmara);
+  }
+
+  @include mq($bp580) {
+    height: 70px;
+    width: 70px;
+  }
+
+  @include mq($bp960) {
+    display: none;
+  }
+}
+
+
+.btn-hdr-search {
+  @include hide-text;
+  height: 60px;
+  width: 60px;
+
+  @include mq($bp960max) {
+    background: url('../svg/icon-search-blue.svg') 50% 50%/22px 22px no-repeat;
+  }
+
+  @include mq($bp580) {
+    height: 70px;
+    width: 70px;
+  }
+
+  @include mq($bp960) {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  @include mq($bp960-1280) {
+    width: 50px;
+  }
+
+  svg {
+    height: 18px;
+    width: 18px;
+    @include centered;
+    fill: $color-black;
+    transition: fill $transition-duration-fast;
+  }
+
+  .no-touchevents &:hover svg {
+    fill: $color-dark-tan;
+  }
+
+  .search-open & {
+    background: $color-dark-tan url('../svg/icon-close.svg') 50% 50%/18px 18px no-repeat;
+
+    svg {
+      display: none;
+    }
+  }
+}
+
+
+.hdr-search-field {
+  display: none;
+  @include max-width-container;
+  background-color: $color-dark-tan;
+  @include padding(null 20px);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+
+  @include mq($bp580) {
+    @include padding(null 30px);
+  }
+
+  @include mq($bp960) {
+    top: 125px;
+    width: calc(100% - 50px);
+  }
+
+  @include mq($bp1280) {
+    width: calc(100% - 70px);
+  }
+
+  .search-open & {
+    display: block;
+    z-index: 1;
+  }
+
+  input[type="search"] {
+    background-color: transparent;
+    border: 0;
+    height: 60px;
+    width: 100%;
+    color: $color-white;
+    @include font-size(24);
+    @include padding(null null null 16px);
+    @include placeholder {
+      color: $color-white;
+      opacity: 0.25;
+    }
+
+    @include mq($bp580) {
+      height: 70px;
+      @include font-size(30);
+      @include padding(null null null 20px);
+    }
+  }
+}
+
+
+.hdr-global-bottom {
+  @include mq($bp960max) {
+    display: none;
+    width: 200%;
+    transition: left $transition-duration-default;
+  }
+
+  @include mq($bp960) {
+    border-top: 1px solid $color-light-grey;
+    border-bottom: 1px solid $color-light-grey;
+  }
+
+  .menu-open & {
+    display: block;
+    position: absolute;
+    top: 61px;
+    left: 0;
+    height: calc(100vh - 61px);
+
+    @include mq($bp580) {
+      top: 71px;
+      height: calc(100vh - 71px);
+    }
+  }
+
+  &.slide {
+    left: -100%;
+  }
+
+  .nav-utility {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    li {
+      width: 50%;
+      text-align: center;
+      border-bottom: 1px solid $color-light-grey;
+      @include font-size(16, 24);
+
+      &:nth-child(even) {
+        border-left: 1px solid $color-light-grey;
+      }
+
+      &:last-child:nth-child(odd) {
+        width: 100%;
+      }
+    }
+
+    a {
+      display: block;
+      height: rem(50);
+      @include vertical-align-flex;
+    }
+  }
+}
+
+
+.hdr-global-bottom-inner {
+  @include mq($bp960max) {
+    background: $color-white;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    @include overflow-scroll;
+  }
+
+  @include mq($bp960) {
+    @include max-width-container;
+    position: relative;
+    @include padding(null 50px null null);
+    height: 70px;
+  }
+
+  @include mq($bp1280) {
+    @include padding(null 70px null null);
+  }
+}
+
+
+.nav-main {
+  a {
+    color: inherit;
+  }
+
+  @include mq($bp960) {
+    width: 100%;
+
+    > ul {
+      display: flex;
+
+      > li {
+        flex: 1;
+
+        > a {
+          display: block;
+          text-align: center;
+          @include font-size(18, 24);
+          height: 70px;
+          @include vertical-align-flex;
+          border-top: 4px solid transparent;
+          border-bottom: 4px solid transparent;
+          transition: border-bottom-color $transition-duration-default;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        &.is-open > a {
+          border-bottom-color: $color-dark-tan;
+
+          &:active {
+            border-bottom-color: $color-lochmara;
+          }
+        }
+      }
+    }
+
+    .search-open & {
+      display: none;
+    }
+  }
+
+  .btn-submenu {
+    @include mq($bp960) {
+      background-color: $color-light-grey;
+
+      &:not(:focus) {
+        @include visuallyhidden;
+      }
+
+      &:focus {
+        position: absolute;
+        z-index: 101;
+      }
+
+      .touchevents &{
+        display: none;
+      }
+    }
+  }
+
+  .submenu {
+    display: none;
+    position: absolute;
+    background-color: $color-white;
+    width: 100%;
+    max-width: 1280px;
+    left: 0;
+    top: 71px;
+    z-index: 100;
+
+    &.fully-open {
+      border-bottom: 1px solid $color-light-grey;
+    }
+
+    > .inner {
+      @include grid-container;
+    }
+
+
+    .text {
+      @include font-size(24, 36);
+
+      @include mq($bp1280) {
+        @include font-size(30, 40);
+      }
+    }
+
+    li {
+      @include font-size(16, 20);
+
+      a {
+        font-family: sans-serif;
+        font-weight: bold;
+
+        @include hover {
+          color: $color-lochmara;
+        }
+
+        &::after {
+          content: '\00A0\003e';
+        }
+      }
+    }
+
+    &.single-level {
+      @include padding(null null 30px);
+      border-top: 30px solid transparent;
+
+      > .inner {
+        display: flex;
+        min-height: 177px;
+
+        > ul {
+          @include span-columns(24);
+          @include shift(1);
+          background: linear-gradient(to right, $color-light-grey, $color-light-grey 1px, transparent 1px, transparent);
+          float: none;
+        }
+
+        li {
+          @include span-columns(7 of 24);
+          @include shift(1 of 24);
+          @include omega(3n);
+          min-height: 2.5em;
+          @include margin(rem(19) null rem(3));
+
+          &:last-child,
+          &:nth-child(3n + 2):nth-last-child(2),
+          &:nth-child(3n + 1):nth-last-child(2),
+          &:nth-child(3n + 1):nth-last-child(3) {
+            min-height: 0;
+            @include margin(null null 0);
+          }
+        }
+      }
+
+      .text {
+        @include span-columns(11);
+        float: none;
+        @include padding(12px null null);
+      }
+    }
+
+
+    &.multi-level {
+      @include padding(null null 19px);
+      border-top: 43px solid transparent;
+
+      > .inner > ul {
+        @include clearfix;
+
+        > li {
+          @include span-columns(8);
+
+          &:nth-child(n+2) {
+            @include shift(1);
+          }
+
+          > div {
+            min-height: rem(50);
+            @include font-size(18);
+          }
+
+          li {
+             @include margin(null null rem(16));
+          }
+        }
+      }
+
+      .text {
+        @include margin(null null rem(36));
+      }
+    }
+  }
+
+  .menu-open & {
+    > ul {
+      > li {
+        display: flex;
+        border-bottom: 1px solid $color-light-grey;
+
+        > a {
+          flex: 1;
+          border-right: 1px solid $color-light-grey;
+          @include padding(null 22px);
+          @include font-size(24, 24);
+          @include vertical-align-flex;
+
+          @include mq($bp580) {
+            @include font-size(30);
+          }
+        }
+      }
+    }
+
+    .btn-submenu {
+      @include hide-text;
+      width: 60px;
+      height: 60px;
+      position: relative;
+
+      @include mq($bp580) {
+        height: 70px;
+        width: 70px;
+      }
+
+      &::before {
+        content: '';
+        @include chevron(13px, 2px, $color-lochmara, right);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include margin(-6px null null -10px);
+      }
+    }
+  }
+}
+
+
+body.menu-open {
+  overflow: hidden;
+}
+
+
+.sticky-nav {
+  display: none;
+
+  @include mq($bp960) {
+    width: 100%;
+    position: fixed;
+    top: -75px;
+    left: 0;
+    background: $color-white;
+    z-index: 99;
+    border-bottom: 1px solid $color-light-grey;
+    transition: top 0.3s;
+  }
+
+  > .inner {
+    @include max-width-container;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo {
+    @include padding(14px null null 30px);
+
+    a {
+      display: block;
+      width: 220px;
+      height: 42px;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .btn-hdr {
+    @include hide-text;
+    height: 69px;
+    width: 70px;
+    position: relative;
+
+    svg {
+      height: 22px;
+      width: 40px;
+      @include centered;
+      fill: $color-lochmara;
+      transition: fill $transition-duration-fast;
+    }
+
+    .no-touchevents &:hover svg {
+      fill: $color-dark-tan;
+    }
+  }
+}
